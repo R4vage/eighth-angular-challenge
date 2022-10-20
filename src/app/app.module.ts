@@ -1,0 +1,29 @@
+import { HomeModule } from './home/home.module';
+import { RegisterModule } from './register/register.module';
+import { LoginModule } from './login/login.module';
+
+import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule, 
+    RouterModule,
+    LoginModule,
+    RegisterModule,
+    HomeModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

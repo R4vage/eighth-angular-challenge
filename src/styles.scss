@@ -1,0 +1,63 @@
+
+@use '@angular/material' as mat;
+@import "@angular/material/theming";
+@import "_theme.scss"; 
+@import "_custom-themes.scss";
+@import "_variables";
+
+@include mat.core();
+
+@include mat.core-theme($theming-material-components-theme);
+@include angular-material-theme($theming-material-components-theme);  
+@include custom-components-theme($theming-material-components-theme); 
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+.dark-theme {
+  @include angular-material-color($dark-theme);
+}
+
+@include angular-material-typography($typography);
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { 
+  height: 100%; 
+}
+
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(220, 248, 253);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(118, 118, 116)
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: black;
+}

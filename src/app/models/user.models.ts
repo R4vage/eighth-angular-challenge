@@ -1,0 +1,1 @@
+export type UserField = "name" | "lastName" | "userName" | "password" | "confirmPassword" | "email";

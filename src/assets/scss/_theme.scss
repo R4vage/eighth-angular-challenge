@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap");
+@import '_variables.scss';
+
+$main-palette:(
+  "50": "#d3f3ff",
+  "100": "#b1dbec",
+  "200": "#90c0d4",
+  "300": "#6da4bb",
+  "400": "#528fa8",
+  "500": "#327c96",
+  "600": "#256d85",
+  "700": "#14596f",
+  "800": "#02465a",
+  "900": "#003142",
+  contrast: (
+    "50": "#ffe0c5",
+    "100": "#f8bda7",
+    "200": "#d89782",
+    "300": "#b6735c",
+    "400": "#9e5840",
+    "500": "#853d25",
+    "600": "#793420",
+    "700": "#692817",
+    "800": "#5a1b12",
+    "900": "#4a0b05"
+  )
+);
+
+$complementary: (
+  "50": "#e0f1ee",
+  "100": "#b4ded4",
+  "200": "#85c9b9",
+  "300": "#58b39e",
+  "400": "#3ba28b",
+  "500": "#299279",
+  "600": "#25856d",
+  "700": "#20755e",
+  "800": "#1b6550",
+  "900": "#134937"
+);
+
+$analoguos: (
+  "50": "#ede8f5",
+  "100": "#d2c6e6",
+  "200": "#b5a1d6",
+  "300": "#987bc6",
+  "400": "#825eb9",
+  "500": "#6c44ad",
+  "600": "#643ea7",
+  "700": "#58369e",
+  "800": "#4e3095",
+  "900": "#3d2585"
+);
+
+$theming-material-components-primary: $main-palette;
+$theming-material-components-accent: $complementary;
+$theming-material-components-warn: $analoguos;
+
+$theming-material-components-theme: mat-light-theme(
+  $theming-material-components-primary,
+  $theming-material-components-accent,
+  $theming-material-components-warn
+);
+
+$dark-primary: mat-palette($mat-orange);
+$dark-accent: mat-palette($mat-amber, A200, A100, A400);
+$dark-warn: mat-palette($mat-deep-orange);
+$dark-theme: mat-dark-theme(
+  (
+    color: (
+      primary: $dark-primary,
+      accent: $dark-accent,
+      warn: $dark-warn,
+    ),
+  )
+);
+
+$heading-font-family: "'Work Sans', sans-serif";
+$typography: mat-typography-config(
+  $display-4: mat-typography-level(112px, $font-family: $heading-font-family),
+  $display-3: mat-typography-level(56px, $font-family: $heading-font-family),
+  $display-2: mat-typography-level(45px, $font-family: $heading-font-family),
+  $display-1: mat-typography-level(34px, $font-family: $heading-font-family),
+  $headline: mat-typography-level(24px, $font-family: $heading-font-family),
+  $title: mat-typography-level(20px, $font-family: $heading-font-family),
+);
+
+
+
+
+/* Custom palettes derives from these combinations */
+
+/* 
+{
+  "Primary": {
+    "50": "#d3f3ff",
+    "100": "#b1dbec",
+    "200": "#90c0d4",
+    "300": "#6da4bb",
+    "400": "#528fa8",
+    "500": "#327c96",
+    "600": "#256d85",
+    "700": "#14596f",
+    "800": "#02465a",
+    "900": "#003142"
+  },
+  "Complementary": {
+    "50": "#ffe0c5",
+    "100": "#f8bda7",
+    "200": "#d89782",
+    "300": "#b6735c",
+    "400": "#9e5840",
+    "500": "#853d25",
+    "600": "#793420",
+    "700": "#692817",
+    "800": "#5a1b12",
+    "900": "#4a0b05"
+  },
+  "Analogous - 1": {
+    "50": "#e0f1ee",
+    "100": "#b4ded4",
+    "200": "#85c9b9",
+    "300": "#58b39e",
+    "400": "#3ba28b",
+    "500": "#299279",
+    "600": "#25856d",
+    "700": "#20755e",
+    "800": "#1b6550",
+    "900": "#134937"
+  },
+  "Analogous - 2": {
+    "50": "#e8ebf4",
+    "100": "#c4cce4",
+    "200": "#9eabd2",
+    "300": "#788bc0",
+    "400": "#5a71b3",
+    "500": "#3c59a7",
+    "600": "#35519d",
+    "700": "#2c4791",
+    "800": "#253d85",
+    "900": "#192c6e"
+  },
+  "Triadic - 1": {
+    "50": "#ede8f5",
+    "100": "#d2c6e6",
+    "200": "#b5a1d6",
+    "300": "#987bc6",
+    "400": "#825eb9",
+    "500": "#6c44ad",
+    "600": "#643ea7",
+    "700": "#58369e",
+    "800": "#4e3095",
+    "900": "#3d2585"
+  },
+  "Triadic - 2": {
+    "50": "#fae6f2",
+    "100": "#f3c0e0",
+    "200": "#ee97cc",
+    "300": "#ec6db6",
+    "400": "#eb4ea3",
+    "500": "#ed2e90",
+    "600": "#db2d8a",
+    "700": "#c32b82",
+    "800": "#ad297a",
+    "900": "#85256d"
+  }
+} */
