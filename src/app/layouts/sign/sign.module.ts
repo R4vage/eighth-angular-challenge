@@ -2,8 +2,6 @@ import { SignComponent } from './sign.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
-
 @NgModule({
   declarations: [
     SignComponent
@@ -15,4 +13,4 @@ import { CommonModule } from '@angular/common';
     SignComponent
   ]
 })
-export class SignModule { }
+export class SignModule {}

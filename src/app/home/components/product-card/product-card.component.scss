@@ -1,0 +1,27 @@
+@import '_variables';
+
+.card-container{
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    border-radius: 2px 7px 2px 7px;
+    background-color: $clr-main-lightest;
+    position: relative;
+
+    .id{
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding-inline: 0.5em;
+        padding-block: 0.2em;
+        margin: 0.2em;
+        background-color: $clr-grey;
+        border-radius: 5px;
+        color: white;
+    }
+    h3{
+        align-self: flex-start;
+        text-align: left;
+    }
+
+}

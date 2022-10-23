@@ -1,6 +1,6 @@
 <app-sign>
     <div class="container login-theme">
-        <h2>Login</h2>
+        <h2>Sign Up</h2>
         <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
 
             <mat-form-field appearance="legacy">
@@ -8,14 +8,14 @@
                 <input 
                 matInput 
                 type="text"
-                formControlName="name" 
+                formControlName="firstName" 
                 placeholder="Your first name"
                 autocomplete="off"
                 maxlength="25"
                 >
-                <mat-error *ngIf="getField('name')?.errors?.['required']">Name is required</mat-error>
-                <mat-error *ngIf="getField('name')?.errors?.['pattern']">Only alphabetic characters are allowed</mat-error>
-                <mat-error *ngIf="getField('name')?.errors?.['minlength'] || getField('name')?.errors?.['maxLength']">Between 4 and 25 characters</mat-error>
+                <mat-error *ngIf="getField('firstName')?.errors?.['required']">Name is required</mat-error>
+                <mat-error *ngIf="getField('firstName')?.errors?.['pattern']">Only alphabetic characters are allowed</mat-error>
+                <mat-error *ngIf="getField('firstName')?.errors?.['minlength'] || getField('firstName')?.errors?.['maxLength']">Between 4 and 25 characters</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="legacy">
@@ -30,7 +30,7 @@
                 >
                 <mat-error *ngIf="getField('lastName')?.errors?.['required']">Name is required</mat-error>
                 <mat-error *ngIf="getField('lastName')?.errors?.['pattern']">Only alphabetic characters are allowed</mat-error>
-                <mat-error *ngIf="getField('lastName')?.errors?.['minlength'] || getField('name')?.errors?.['maxLength']">Between 4 and 25 characters</mat-error>
+                <mat-error *ngIf="getField('lastName')?.errors?.['minlength'] || getField('lastName')?.errors?.['maxLength']">Between 4 and 25 characters</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="legacy">
@@ -45,7 +45,7 @@
                 >
                 <mat-error *ngIf="getField('userName')?.errors?.['required']">Username is required</mat-error>
                 <mat-error *ngIf="getField('userName')?.errors?.['pattern']">Only alphabetic characters, numbers and -_ are allowed.</mat-error>
-                <mat-error *ngIf="getField('userName')?.errors?.['userName'] || getField('name')?.errors?.['maxLength']">Between 4 and 25 characters</mat-error>
+                <mat-error *ngIf="getField('userName')?.errors?.['userName'] || getField('userName')?.errors?.['maxLength']">Between 4 and 25 characters</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="legacy">
@@ -58,7 +58,7 @@
                 autocomplete="off"
                 >
                 <mat-icon matSuffix>mail_outline</mat-icon>
-                <mat-hint>Input the fully qualified email address</mat-hint>
+                <mat-hint>Input your full email address</mat-hint>
                 <mat-error *ngIf="getField('email')?.errors?.['required']">Email is required</mat-error>
                 <mat-error *ngIf="getField('email')?.errors?.['pattern'] ">Please enter valid email</mat-error>
             </mat-form-field>
@@ -71,7 +71,7 @@
                     autocomplete="off"
                     [type]="passwordShown ? 'text' : 'password'"
                 >
-                <mat-icon matSuffix (click)="toggleVisibility()">{{passwordShown?'visibility_off':'visibility'}}</mat-icon>
+                <mat-icon matSuffix (click)="toggleVisibility()" class="eye">{{passwordShown?'visibility_off':'visibility'}}</mat-icon>
                 <mat-error *ngIf="getField('password')?.errors?.['required']">Password is required</mat-error>
                 <mat-error *ngIf="getField('password')?.errors?.['pattern']">A letter, a number and a special character is required</mat-error>
                 <mat-error *ngIf="getField('password')?.errors?.['minlength']">Password must be eight characters long or more</mat-error>
@@ -89,9 +89,9 @@
                 <mat-error *ngIf="getField('confirmPassword')?.errors?.['required']">You must confirm your password</mat-error>
                 <mat-error *ngIf="getField('confirmPassword')?.errors?.['pattern']">Passwords must be the same</mat-error>
             </mat-form-field>
-            <p class="register">You havent registered yet? Follow this <a [routerLink]="['/login']">link!</a></p>
+            <p class="register">You have an account? Follow this <a [routerLink]="['/login']">link!</a></p>
             <div mat-dialog-actions >
-                <button mat-raised-button color="primary" type="submit" >Submit</button><!-- [disabled]="!registerForm.valid" -->
+                <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">Submit</button>
             </div>
         </form>
     </div>

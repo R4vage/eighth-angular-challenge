@@ -13,8 +13,8 @@
                 >
                 <mat-icon matSuffix>mail_outline</mat-icon>
                 <mat-hint>Input the fully qualified email address</mat-hint>
-                <mat-error *ngIf="email?.errors?.['required']">Email is required</mat-error>
-                <mat-error *ngIf="email?.errors?.['pattern']">Please enter valid email</mat-error>
+                <mat-error *ngIf="email?.errors?.['required']" color="warn">Email is required</mat-error>
+                <mat-error *ngIf="email?.errors?.['pattern']">Please enter a valid email</mat-error>
             </mat-form-field>
 
 
@@ -26,12 +26,12 @@
                     autocomplete="off"
                     [type]="passwordShown ? 'text' : 'password'"
                 >
-                <mat-icon matSuffix (click)="toggleVisibility()">{{passwordShown?'visibility_off':'visibility'}}</mat-icon>
+                <mat-icon matSuffix (click)="toggleVisibility()" class="eye">{{passwordShown?'visibility_off':'visibility'}}</mat-icon>
                 <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
             </mat-form-field>
             <p class="register">You havent registered yet? Follow this <a [routerLink]="['/register']">link!</a></p>
             <div mat-dialog-actions >
-                <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Submit</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Submit</button><!-- [disabled]="!loginForm.valid" -->
             </div>
         </form>
     </div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { RestLoginService } from './rest-login.service';
+import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -6,8 +7,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-  passwordShown = false
+export class LoginComponent {
+  passwordShown = false;
 
   loginForm = new FormGroup ({
     email: new FormControl('', [
@@ -15,30 +16,32 @@ export class LoginComponent implements OnInit {
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
       Validators.email
     ]),
-    password: new FormControl('', [
+    password: new FormControl ('', [
       Validators.required,
       Validators.maxLength(100)
     ]),
   })
 
-  get email ():AbstractControl <any> | null {
-    return this.loginForm.get('email')
-  }
+  get email ():AbstractControl<any> | null {
+    return this.loginForm.get('email');
+  };
 
-  get password ():AbstractControl <any> | null {
-    return this.loginForm.get('password')
-  }
+  get password ():AbstractControl<any> | null {
+    return this.loginForm.get('password');
+  };
 
-  constructor() { }
+  constructor (
+    private restService: RestLoginService,
+  ) {}
 
-  ngOnInit(): void {
-  }
+  onSubmit ():void {
+    this.restService.loginUser({
+      "email": this.email?.value as string,
+      "password": this.password?.value as string
+    });
+  };
 
-  onSubmit(){
-    console.log(this.loginForm.value)
-  }
-
-  toggleVisibility () {
-    this.passwordShown= !this.passwordShown
-  }
-}
+  toggleVisibility ():void {
+    this.passwordShown= !this.passwordShown;
+  };
+};

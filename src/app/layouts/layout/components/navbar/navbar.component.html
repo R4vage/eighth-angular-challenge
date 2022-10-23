@@ -1,0 +1,12 @@
+<nav>
+    <h3>Week Eight's Challenge</h3>
+    <div class="user">
+        <button mat-icon-button (click)="toggleUserInfo()" >{{user.name[0] | titlecase}}</button>
+        <mat-card *ngIf="userInfoOpened" @topRightScale> 
+            <p class="cross" (click)="toggleUserInfo()">X</p>
+            <h2>{{user.name}}</h2>
+            <p>{{user.email}}</p>
+            <button mat-raised-button (click)="logOut()">Log Out</button>
+        </mat-card>
+    </div>
+</nav>

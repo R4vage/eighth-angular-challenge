@@ -38,6 +38,17 @@
     }
 }
 
+.eye{
+    cursor: pointer;
+}
+
+mat-form-field{
+    mat-error{
+        color: orangered;
+        text-align: right;
+        font-size: small;
+    }
+}
 
 @media (min-width:420px) {
     .container{

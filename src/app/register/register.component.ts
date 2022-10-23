@@ -1,19 +1,18 @@
+import { RestRegisterService } from './rest-register.service';
 import { UserField } from './../models/user.models';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
-  	passwordShown = false
+export class RegisterComponent {
+  passwordShown = false;
 
-
-  
   registerForm = new FormGroup ({
-    name: new FormControl('', [
+    firstName: new FormControl('', [
       Validators.required,
       Validators.minLength(4),
       Validators.maxLength(25),
@@ -48,23 +47,25 @@ export class RegisterComponent implements OnInit {
     ]),
   })
 
-  constructor() { }
+  constructor (
+    private restService: RestRegisterService,
+  ) { }
 
-  ngOnInit(): void {
-  }
+  getField (field:UserField): AbstractControl <any> | null {
+    return this.registerForm.get(field);
+  };
 
-  onSubmit() {
-    console.log(this.registerForm)
-  }
+  onSubmit (): void {
+    console.log(this.registerForm.value);
+    this.restService.registerUser({
+      "email": this.getField('email')?.value as string,
+      "name": this.getField('firstName')?.value as string + this.getField('lastName')?.value as string,
+      "password": this.getField('password')?.value as string,
+      "passwordConfirmation": this.getField('confirmPassword')?.value as string
+    })
+  };
 
-  getField (field:UserField) :AbstractControl <any> | null  {
-    return this.registerForm.get(field)
-  }
-
-
-  toggleVisibility () {
-    this.passwordShown= !this.passwordShown
-  }
-
-
-}
+  toggleVisibility (): void {
+    this.passwordShown= !this.passwordShown;
+  };
+};

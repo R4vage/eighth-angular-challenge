@@ -1,0 +1,69 @@
+@import '_variables';
+
+nav{
+    display: flex;
+    width: 100%;
+    height: 4rem;
+    background-color: $clr-main-dark;
+    color: white;
+    justify-content: space-around;
+    align-items: center;
+    h3{
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+    .user{  
+        position: relative;
+
+        button{
+            background-color: $clr-main-lighter;
+            border-radius: 100px;
+            letter-spacing: 1px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: black;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        mat-card{
+            position: absolute;
+            width: max-content;
+            background-color: $clr-alternative;
+            border-radius: 5px;
+            padding: 1em;
+            top: 50%;
+            right: 45%;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .cross {
+                position: inherit;
+                right: 0;
+                top: 0;
+                cursor: pointer;
+                margin-block: 0.2em;
+                margin-inline: 0.5em;
+                font-weight: 600;
+            }
+            h2{
+                font-weight: 600;
+                padding-inline: 0.8em;
+            }
+
+            button{
+                background-color: $clr-grey;
+                color: white;
+                font-weight: 400;
+            }
+        }
+    }
+
+
+
+
+}
+
