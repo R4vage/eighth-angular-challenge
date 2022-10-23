@@ -1,27 +1,10 @@
 # EighthChallenge
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
+Project created for the eighth week of Applaudo Studio's Trainee Program.
+Consists of a SPA, with the following pages:
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    Login and register, which allow for the creation of a user, and its sign in. These pages cant be accessed if the user has already logged in, and has a JWT stores.
+    Homepage, which displays a simple portrayal of currently available products, provided by this week's API. The page can be accessed only if the user has a JWT, and will be redirected to login on any unauthorized request, and when the user's token expires.
+    Also, it has refresh functionality made through interceptors, and the token is also inserted in the headers through and interceptor.
+    
+This proyect has 2 simple layouts, one for the login and register pages, and another for the homepage. On the homepage's navbar there is a user profile image, which, on click, shows the user's info and logout button.
