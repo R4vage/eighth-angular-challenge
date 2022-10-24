@@ -2,9 +2,7 @@ import { LoginResponse, GetProductsResponse, LoginData, RegisterResponse } from 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class GlobalRestService {
 url = "http://sheltered-oasis-97086.herokuapp.com"
 httpOptions = {
@@ -30,6 +28,4 @@ httpOptions = {
   registerUser (userData: LoginData) {
     return this.http.post<RegisterResponse>(this.url + "/auth/signup", userData, this.httpOptions)
   }
-
-
 }

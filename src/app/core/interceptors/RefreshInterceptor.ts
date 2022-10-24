@@ -1,7 +1,8 @@
+import { LoginResponse } from './../../models/rest.models';
 import { Router } from '@angular/router';
 import { SnackbarService } from './../../shared/services/snackbar.service';
 import { GlobalRestService } from './../services/global-rest.service';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   HttpErrorResponse,
   HttpEvent,
@@ -17,7 +18,10 @@ import {
   take,
   switchMap,
   catchError,
+  tap,
+  mergeMap
 } from 'rxjs';
+
 @Injectable()
 export class RefreshInterceptor implements HttpInterceptor {
   private isRefreshing = false;
@@ -58,25 +62,30 @@ export class RefreshInterceptor implements HttpInterceptor {
     if (!this.isRefreshing) {
       this.isRefreshing = true;
       this.refreshTokenSubject.next(null);
-      return this.restService.refreshToken(token).subscribe({
-        next: response => {
-          localStorage.setItem('accessToken', response.accessToken);
-          localStorage.setItem('refreshToken', response.refreshToken);
-          location.reload();
-          this.refreshTokenSubject.next(response.accessToken);
-          return next.handle(this.addTokenToHeader(request, response.accessToken));
-        },
-        error: error => {
-          this.isRefreshing = false;
-          this.logout();
-          return throwError(() => new Error("Session has expired"));
-        }
-      })
+      return this.restService.refreshToken(token).pipe(
+        tap((res:LoginResponse) => {
+            this.isRefreshing = false;
+            this.refreshTokenSubject.next(res.accessToken);
+            localStorage.setItem('accessToken', res.accessToken);
+            localStorage.setItem('refreshToken', res.refreshToken);
+            location.reload() /* I added this to mimmick the request resend */
+        }),
+        switchMap((res:LoginResponse) => {
+            return next.handle(this.addTokenToHeader(request, res.accessToken))
+        }),
+        catchError((error) => {
+            console.log('We are inside expired session error')
+            this.isRefreshing = false
+            this.logout()
+            return throwError(() => new Error("Session has expired"))
+        }),
+      ).subscribe() /* This is wrong, but I havent been able to make this work. It partially works if I force the subscription to occur here instead of on call, 
+      but i loose the next request. */
     }
     return this.refreshTokenSubject.pipe(
-      filter((token) => token !== null),
+      filter((token) => token != null),
       take(1),
-      switchMap((token) => next.handle(this.addTokenToHeader(request, token)))
+      switchMap(token => {return next.handle(this.addTokenToHeader(request, token))})
     );
   };
   private logout() {
@@ -111,3 +120,18 @@ export class RefreshInterceptor implements HttpInterceptor {
       )
       
       */
+
+      /* .subscribe({
+        next: response => {
+          localStorage.setItem('accessToken', response.accessToken);
+          localStorage.setItem('refreshToken', response.refreshToken);
+          location.reload();
+          this.refreshTokenSubject.next(response.accessToken);
+          return next.handle(this.addTokenToHeader(request, response.accessToken));
+        },
+        error: error => {
+          this.isRefreshing = false;
+          this.logout();
+          return throwError(() => new Error("Session has expired"));
+        }
+      }) */
