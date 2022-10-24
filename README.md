@@ -8,3 +8,4 @@ Consists of a SPA, with the following pages:
     Also, it has refresh functionality made through interceptors, and the token is also inserted in the headers through and interceptor.
     
 This proyect has 2 simple layouts, one for the login and register pages, and another for the homepage. On the homepage's navbar there is a user profile image, which, on click, shows the user's info and logout button.
+Also, the repository has been published to netlify: https://poetic-beijinho-d52ce6.netlify.app.
